@@ -24,8 +24,9 @@
   when: not pgdata_dir_version.stat.exists
   become: true
   become_user: "{{ postgresql_user }}"
-  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
   vars:
+    ansible_remote_tmp: "{{ postgresql_ansible_remote_tmp }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
     ansible_ssh_pipelining: true
 
 - name: Ensure PostgreSQL log directory exists.
