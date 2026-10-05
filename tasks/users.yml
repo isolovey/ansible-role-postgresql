@@ -15,5 +15,6 @@
   # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
   vars:
     ansible_ssh_pipelining: true
+    ansible_remote_tmp: "{{ postgresql_remote_tmp }}"
   environment:
     PGOPTIONS: "{{ (postgresql_auth_method == 'scram-sha-256') | ternary('-c password_encryption=scram-sha-256', '') }}"
